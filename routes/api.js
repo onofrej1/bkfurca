@@ -53,21 +53,18 @@ router.get("/:model/fields", function(req, res) {
   res.send(getModel(req).attributes);
 });
 
-router.put("/:modelName/:id", function(req, res, next) {
-  let data = req.body.model;
+router.put("/:model/:id", function(req, res, next) {
+  let data = req.body;
   let model = getModel(req);
 
-  model
-    .findOne({ where: { id: req.params.id } })
-    .then(obj => {
-      obj.update(data, { fields: obj.attributes });
-      return obj;
-    })
-    .then(obj => savePivotRelations(obj, model, data));
+  return model.findOne({ where: { id: req.params.id } }).then(
+    obj => obj.update(data, { fields: obj.attributes }).then(obj => obj)
+    //.then(obj => savePivotRelations(obj, model, data))
+  );
 });
 
-router.post("/:modelName", function(req, res, next) {
-  let data = req.body.model;
+router.post("/:model", function(req, res, next) {
+  let data = req.body;
   let model = getModel(req);
 
   model
@@ -79,6 +76,7 @@ router.post("/:modelName", function(req, res, next) {
 });
 
 function savePivotRelations(obj, model, data) {
+  return;
   const keys = Object.keys(model.associations);
   for (let i in keys) {
     let assoc = model.associations[keys[i]];
