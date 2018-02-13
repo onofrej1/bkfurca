@@ -27,8 +27,8 @@ models.forEach(function(model) {
   m.MenuItem.belongsTo(m.Page, {foreignKey: 'page_id'});
   m.Result.belongsTo(m.Runner, {foreignKey: 'runner_id'});
   m.Result.belongsTo(m.Event, {foreignKey: 'event_id'});
-  m.User.belongsToMany(m.Role, {as: 'Roles', through: m.UserRole, foreignKey: 'user_id', otherKey: 'role_id'});
-  m.Article.belongsToMany(m.Tag, {as: 'Tags', through: m.ArticleTag, foreignKey: 'article_id', otherKey: 'tag_id'});
+  m.User.belongsToMany(m.Role, {as: 'roles', through: m.UserRole, foreignKey: 'user_id', otherKey: 'role_id'});
+  m.Article.belongsToMany(m.Tag, {as: 'tags', through: m.ArticleTag, foreignKey: 'article_id', otherKey: 'tag_id'});
   //m.MenuItem.belongsTo(m.MenuItem, {as: 'parent', foreignKey: 'parent_id'});
 })(module.exports);
 

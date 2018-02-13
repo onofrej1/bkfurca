@@ -34,8 +34,7 @@ export const fetchResourceData = name => {
   return (dispatch, getState) => {
     let baseUrl = getState().apiUrl;
     let url = baseUrl + "/" + name;
-    console.log("fetch");
-    
+
     axios
       .get(url, { headers: { 'x-access-token': localStorage.token } })
       .then(result => {

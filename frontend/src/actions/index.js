@@ -36,7 +36,7 @@ export const setActiveRow = activeRow => {
     row[property] = value instanceof Object ? value.id : value;
     row[property] = value instanceof Array ? value.map(v => v.id+"") : value;
   }
-
+  
   return {
     type: "SET_ACTIVE_ROW",
     activeRow: row

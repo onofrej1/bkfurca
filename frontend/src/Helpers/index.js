@@ -4,8 +4,13 @@ function removeTags(html) {
   return tmp.textContent || tmp.innerText || "";
   //return text.replace(/<\/?[^>]+(>|$)/g, "");
 }
+
 function truncate(source, size) {
   return source.length > size ? source.slice(0, size - 1) + "…" : source;
+}
+
+function ucfirst(value) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
 function findByPath(obj, path) {
@@ -30,4 +35,4 @@ function findByPath(obj, path) {
   return str.length < limit ? str : str.substring(0, limit) + "...";
 }*/
 
-export { truncate, removeTags, findByPath };
+export { truncate, removeTags, findByPath, ucfirst };

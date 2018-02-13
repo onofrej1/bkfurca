@@ -51,7 +51,8 @@ class Crud extends Component {
     let dbColumns = this.props.fields;
     let modelForm = models[this.props.name].form || {};
 
-    let fields = {};
+    let fields = {...modelForm};
+
     for (let key in dbColumns) {
       const type = key === "id" ? "hidden" : this.fieldsMap[dbColumns[key].type];
       fields[key] = { type, ...modelForm[key] };
@@ -73,7 +74,7 @@ class Crud extends Component {
   render() {
     const fields = this.getFormFields();
     const columns = this.getListFields();
-    console.log(columns);
+    
 
     return (
       <Row>

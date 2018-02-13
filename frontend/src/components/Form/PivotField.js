@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchResourceData } from "./../../actions";
+import { ucfirst } from './../../Helpers';
 
 class PivotField extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class PivotField extends Component {
       emptyOption,
       ...props
     } = this.props;
-    console.log('values', this.props.values);
+    //console.log('values', this.props.values);
     return (
       <div className="checkbox">
         <p>
@@ -51,10 +52,11 @@ class PivotField extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  let values = props.model[props.name];
+  let values = props.model[props.name] || [];
+  let resource = props.resourceTable;
 
   return {
-    options: state.resourceData[props.resourceTable],
+    options: state.resourceData[resource],
     values
   };
 };

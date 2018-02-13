@@ -7,10 +7,6 @@ const Article = {
     content: {
       type: 'ckeditor'
     },
-    sourcex: {
-      type: 'checkboxList',
-      options: [{ value: "aaa", label: "AAA" }, { value: "bbb", label: "BBB" }]
-    },
     created_at: false,
     tags: {
       type: 'pivotRelation',
