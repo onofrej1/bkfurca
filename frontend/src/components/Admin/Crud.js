@@ -64,6 +64,7 @@ class Crud extends Component {
 
   processForm(data) {
     this.props.saveResourceData(data);
+    //this.props.fetchResourceData(this.props.name);
 }
 
   componentDidMount() {
@@ -74,7 +75,7 @@ class Crud extends Component {
   render() {
     const fields = this.getFormFields();
     const columns = this.getListFields();
-    
+
 
     return (
       <Row>

@@ -3,7 +3,6 @@ import React from "react";
 const Article = {
   title: 'Clanky',
   form: {
-    //source: false,
     content: {
       type: 'ckeditor'
     },

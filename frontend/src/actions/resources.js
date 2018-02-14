@@ -38,6 +38,7 @@ export const fetchResourceData = name => {
     axios
       .get(url, { headers: { 'x-access-token': localStorage.token } })
       .then(result => {
+        console.log(result.data);
         dispatch({
           type: "SET_RESOURCE_DATA",
           name,
@@ -92,9 +93,10 @@ export const saveResourceData = data => {
       data
     }).then(result => {
       dispatch(setActiveRow(null));
-      const updatedRow =
-        result.data instanceof Array ? result.data[0] : result.data;
-      dispatch(setResourceRow(resourceName, updatedRow));
+      /*const updatedRow =
+        result.data instanceof Array ? result.data[0] : result.data;*/
+      //dispatch(setResourceRow(resourceName, updatedRow));
+      dispatch(fetchResourceData(resourceName));
     });
   };
 };

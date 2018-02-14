@@ -3,24 +3,9 @@ var router = express.Router();
 const mysql = require("mysql");
 var models = require("./../models");
 
-/*var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "furca2",
-  port: "3306",
-  socketPath: "/var/run/mysqld/mysqld.sock"
-});*/
-
-/**
- * RestController
- *
- * @description :: Server-side logic for managing models
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
- */
-
 function getRelations(model) {
   let relations = [];
+
   const keys = Object.keys(model.associations);
 
   for (let i in keys) {
@@ -57,43 +42,31 @@ router.put("/:model/:id", function(req, res, next) {
   let data = req.body;
   let model = getModel(req);
 
-  model.findOne({ where: { id: req.params.id } }).then(obj =>
-    obj.update(data, { fields: obj.attributes }).then(obj => {
-      savePivotRelations(obj, model, data);
-      return res.json(obj);
-    })
-  );
+  model
+    .findOne({ where: { id: req.params.id } })
+    .then(obj =>
+      obj
+        .update(data, { fields: obj.attributes })
+        .then(callback.bind(null, req, res))
+    );
 });
 
 router.post("/:model", function(req, res, next) {
   let data = req.body;
   let model = getModel(req);
 
-  model.create(data).then(obj => {
-    savePivotRelations(obj, model, data);
-    return res.json(obj);
-  });
+  model.create(data).then(callback.bind(null, req, res));
 });
 
-function savePivotRelations(obj, model, data) {
-  const keys = Object.keys(model.associations);
-  for (let i in keys) {
-    let assoc = model.associations[keys[i]];
-    if (assoc.associationType == "BelongsToMany") {
-      let alias = assoc.options.as;
-      obj["set" + alias](data[alias]);
-      obj.save();
-    }
-  }
-}
-
-function callback(res, err, data) {
+function callback(req, res, obj, err) {
   if (err) {
-    console.log(err);
     return res.json(err);
   } else {
-    //console.log(data);
-    return res.json(data);
+    const model = req.params.model;
+    if (model == "Article") {
+      return obj.setTags(req.body.tags).then(obj => res.json(obj));
+    }
+    return res.json(obj);
   }
 }
 

@@ -1,0 +1,44 @@
+/*function savePivotRelations(obj, model, data, res) {
+  const keys = Object.keys(model.associations);
+  for (let i in keys) {
+    let assoc = model.associations[keys[i]];
+    if (assoc.associationType == "BelongsToMany") {
+      let alias = assoc.options.as;
+      obj["set" + ucfirst(alias)](data[alias]).then(obj => res.json(obj));
+      obj.save();
+    }
+  }
+}*/
+
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "furca2",
+  port: "3306",
+  socketPath: "/var/run/mysqld/mysqld.sock"
+
+
+/*function jwtDecode(t) {
+  let token = {};
+  token.raw = t;
+  token.header = JSON.parse(window.atob(t.split(".")[0]));
+  token.payload = JSON.parse(window.atob(t.split(".")[1]));
+  return token;
+}*/
+
+/*router.get("/getRoles", function(req, res) {
+  var token =
+    req.body.token || req.query.token || req.headers["x-access-token"];
+
+  jwt.verify(token, "pwd", (error, payload) => {
+    if (error) {
+      return res.status(403).send({
+        error: true
+      });
+    } else {
+      return res.json(payload.roles);
+    }
+  });
+});*/
+

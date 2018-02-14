@@ -44,27 +44,4 @@ router.post("/login", function(req, res) {
   });
 });
 
-/*function jwtDecode(t) {
-  let token = {};
-  token.raw = t;
-  token.header = JSON.parse(window.atob(t.split(".")[0]));
-  token.payload = JSON.parse(window.atob(t.split(".")[1]));
-  return token;
-}*/
-
-/*router.get("/getRoles", function(req, res) {
-  var token =
-    req.body.token || req.query.token || req.headers["x-access-token"];
-
-  jwt.verify(token, "pwd", (error, payload) => {
-    if (error) {
-      return res.status(403).send({
-        error: true
-      });
-    } else {
-      return res.json(payload.roles);
-    }
-  });
-});*/
-
 module.exports = router;
