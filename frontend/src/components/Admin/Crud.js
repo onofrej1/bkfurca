@@ -64,7 +64,6 @@ class Crud extends Component {
 
   processForm(data) {
     this.props.saveResourceData(data);
-    //this.props.fetchResourceData(this.props.name);
 }
 
   componentDidMount() {

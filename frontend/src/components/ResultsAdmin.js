@@ -70,7 +70,7 @@ class ResultsAdmin extends Component {
         header: "Name",
         Cell: props => (
           <span>
-            {props.row.runner.last_name} {props.row.runner.first_name}
+            {props.row.Runner.last_name} {props.row.Runner.first_name}
           </span>
         )
       },
@@ -161,7 +161,7 @@ const ResultsForm = props => {
       <Field type="hidden" name="id" value="null" />
       <Field
         component="relation"
-        name="runner"
+        name="runner_id"
         resourceTable="runner"
         render={props => (
           <option key={props.row.id} value={props.row.id}>

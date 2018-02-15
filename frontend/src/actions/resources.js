@@ -38,7 +38,6 @@ export const fetchResourceData = name => {
     axios
       .get(url, { headers: { 'x-access-token': localStorage.token } })
       .then(result => {
-        console.log(result.data);
         dispatch({
           type: "SET_RESOURCE_DATA",
           name,

@@ -30,23 +30,32 @@ const MenuItem = {
       show: 'title',
       label: 'Menu'
     },
-    parent_id: {
-      type: 'relation',
-      resourceTable: 'menuitem',
-      show: 'title',
-      label: 'Parent'
-    },
     link: 'text',
     page: {
       type: 'relation',
       resourceTable: 'page',
       label: 'Stranka',
       show: 'title',
-    }
+    },
+    parent_id: {
+      type: 'relation',
+      resourceTable: 'menuitem',
+      show: 'title',
+      label: 'Parent'
+    },
   },
   list: {
     menu_id: {
-      Cell: (props) => <strong>aaa</strong>
+      header: 'Menu',
+      Cell: (props) => <strong>{props.row.Menu.title}</strong>
+    },
+    page_id: {
+      header: 'Page',
+      Cell: (props) => <strong>{props.row.Page && props.row.Page.title}</strong>
+    },
+    parent_id: {
+      header: 'Parent',
+      Cell: (props) => <strong>{props.row.Parent && props.row.Parent.title}</strong>
     }
   }
 }

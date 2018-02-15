@@ -27,7 +27,6 @@ function getModel(req) {
 
 router.get("/:model", function(req, res) {
   var model = getModel(req);
-
   const include = getRelations(model);
   model.findAll({ include }).then(data => {
     res.send(data);

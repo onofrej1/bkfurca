@@ -7,6 +7,13 @@ var { verifyPermission } = require("jwt-permissions");
 const mysql = require("mysql");
 var models = require("./../models");
 
+router.get("/results/:eventId", function(req, res) {
+  models.Result.findAll({
+    where: { event_id: req.params.eventId },
+    include: "Runner"
+  }).then((data, error) => res.send(data));
+});
+
 router.post("/register", function(req, res) {
   let User = models.User;
   let data = {

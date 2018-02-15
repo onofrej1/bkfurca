@@ -37,9 +37,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/node", index);
-app.use("/", files);
+app.use("/", index, files);
 app.use("/api", api);
+
 app.set('models', require('./models'));
 
 // catch 404 and forward to error handler
