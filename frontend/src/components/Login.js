@@ -5,6 +5,7 @@ import { login } from "./../actions/index";
 import {
   Input,
   InputGroup,
+  InputGroupText,
   InputGroupAddon,
   Card,
   CardBody,
@@ -29,7 +30,7 @@ class Login extends Component {
   }
 
   render() {
-    if(this.props.user) {
+    if (this.props.user) {
       this.props.history.push("/");
     }
 
@@ -37,18 +38,24 @@ class Login extends Component {
       <Row>
         <Col md={{ size: 4, offset: 4 }}>
           <br />
-          <Card style={{ backgroundColor: '#F8F8F8'}}>
+          <Card style={{ backgroundColor: "#F8F8F8" }}>
             <CardBody>
               <Form processForm={this.login}>
                 <InputGroup>
                   <Input name="email" placeholder="Email" type="text" />
-                  <InputGroupAddon addonType="append">@</InputGroupAddon>
+                  <InputGroupAddon addonType="append">
+                    <InputGroupText>
+                      <FontAwesome name="envelope" />
+                    </InputGroupText>
+                  </InputGroupAddon>
                 </InputGroup>
                 <br />
                 <InputGroup>
                   <Input name="password" placeholder="Password" type="text" />
                   <InputGroupAddon addonType="append">
-                    <FontAwesome name="lock" />
+                    <InputGroupText>
+                      <FontAwesome name="key" />
+                    </InputGroupText>
                   </InputGroupAddon>
                 </InputGroup>
                 <br />
@@ -74,7 +81,7 @@ class Login extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.user,
+    user: state.user
   };
 };
 

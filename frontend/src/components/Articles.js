@@ -8,15 +8,15 @@ import { truncate, removeTags } from "./../Helpers/index";
 
 class Articles extends Component {
   static defaultProps = {
-    articles: { data: [] }
+    articles: []
   };
 
   componentDidMount() {
-    this.props.fetchResourceData("articles");
+    this.props.fetchResourceData("article");
   }
 
   render() {
-    let articles = this.props.articles.data;
+    let articles = this.props.articles;
 
     return (
       <SidebarLayout contentTitle="Clanky">
@@ -50,7 +50,7 @@ class Articles extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    articles: state.resources.articles
+    articles: state.resourceData.article
   };
 };
 

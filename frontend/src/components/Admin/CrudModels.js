@@ -1,12 +1,28 @@
 import React from "react";
+import {truncate} from "./../../Helpers";
+
+const User = {
+  title: 'Users',
+  form: {
+    password: 'hidden',
+    roles: {
+      type: 'pivotRelation',
+      resourceTable: 'role',
+      show: 'title',
+    }
+  },
+  list: {
+    password: 'hidden'
+  }
+}
 
 const Article = {
-  title: 'Clanky',
+  title: 'Articles',
   form: {
     content: {
       type: 'ckeditor'
     },
-    created_at: false,
+    created_at: 'hidden',
     tags: {
       type: 'pivotRelation',
       resourceTable: 'tag',
@@ -14,24 +30,24 @@ const Article = {
     }
   },
   list: {
-    content: {
-      Cell: props => <span>CC</span>
-    }
+    title: {
+      Cell: (props) => <span>{truncate(props.row.title, 30)}</span>
+    },
+    content: 'hidden',
+    source: 'hidden',
   }
 }
 
 const MenuItem = {
   title: 'Menu',
   form: {
-    title: 'text',
-    menu: {
+    menu_id: {
       type: 'relation',
       resourceTable: 'menu',
       show: 'title',
       label: 'Menu'
     },
-    link: 'text',
-    page: {
+    page_id: {
       type: 'relation',
       resourceTable: 'page',
       label: 'Stranka',
@@ -39,7 +55,7 @@ const MenuItem = {
     },
     parent_id: {
       type: 'relation',
-      resourceTable: 'menuitem',
+      resourceTable: 'menuItem',
       show: 'title',
       label: 'Parent'
     },
@@ -47,55 +63,35 @@ const MenuItem = {
   list: {
     menu_id: {
       header: 'Menu',
-      Cell: (props) => <strong>{props.row.Menu.title}</strong>
+      Cell: (props) => <span>{props.row.Menu.title}</span>
     },
     page_id: {
       header: 'Page',
-      Cell: (props) => <strong>{props.row.Page && props.row.Page.title}</strong>
+      Cell: (props) => <span>{props.row.Page && props.row.Page.title}</span>
     },
     parent_id: {
       header: 'Parent',
-      Cell: (props) => <strong>{props.row.Parent && props.row.Parent.title}</strong>
+      Cell: (props) => <span>{props.row.Parent && props.row.Parent.title}</span>
     }
   }
 }
 
 const Page = {
-  title: "Stranky",
+  title: "Pages",
   form: {
-    title: "text",
     body: {
       type: "ckeditor",
       label: "Body",
       rows: 8,
-      style: {
-        color: "red",
-        backgroundColor: "yellow"
-      }
     },
   },
   list: {
-    body: {
-      Cell: (props) => <strong>body</strong>
-    }
+    body: 'hidden',
   }
 };
 
-const Tag = {
-  title: "Tag",
-  form: {
-    title: {
-      type: "text",
-      label: "Tag"
-    }
-  },
-  list: {
-    title: {
-      Cell: (props) => <strong>{props.row.title}</strong>
-    }
-  }
-};
+const Tag = { title: 'Tags'};
 
-const models = { Page, Tag, Article, MenuItem };
+const models = { User, Page, Tag, Article, MenuItem };
 
 export default models;

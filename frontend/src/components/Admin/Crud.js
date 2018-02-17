@@ -36,7 +36,7 @@ class Crud extends Component {
     let modelList = models[this.props.name].list || {};
 
     for (let key in dbColumns) {
-      if(key === 'id') {
+      if(key === 'id' || modelList[key] === 'hidden') {
         continue;
       }
       const column = { header: key, field: key, ...modelList[key] };
@@ -56,7 +56,7 @@ class Crud extends Component {
     for (let key in dbColumns) {
       const type = key === "id" ? "hidden" : this.fieldsMap[dbColumns[key].type];
       fields[key] = { type, ...modelForm[key] };
-      if(modelForm[key] === false) delete fields[key];
+      if(modelForm[key] === 'hidden') delete fields[key];
     }
 
     return fields;

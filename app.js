@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 
 var index = require("./routes/index");
 var files = require("./routes/files");
+var auth = require("./routes/files");
 var api = require("./routes/api");
 let verifyToken = require("./middlewares/verifyToken");
 let permission = require("./middlewares/permission");
@@ -37,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", index, files);
+app.use("/", index, files, auth);
 app.use("/api", api);
 
 app.set('models', require('./models'));

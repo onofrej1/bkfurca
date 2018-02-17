@@ -65,6 +65,10 @@ function callback(req, res, obj, err) {
     if (model == "Article") {
       return obj.setTags(req.body.tags).then(obj => res.json(obj));
     }
+
+    if (model == "User") {
+      return obj.setRoles(req.body.roles).then(obj => res.json(obj));
+    }
     return res.json(obj);
   }
 }
