@@ -8,9 +8,9 @@ const baseUrl = (state = url, action) => {
   return state;
 };
 
-/*const baseUrl = (state = "http://nessbox.local:", action) => {
+const appUrl = (state = 'http://localhost:3000', action) => {
   return state;
-};*/
+};
 
 const activeRow = (state = null, action) => {
   switch (action.type) {
@@ -35,6 +35,7 @@ const reducers = combineReducers({
   user,
   /* index.js */
   baseUrl,
+  appUrl,
   activeRow,
 });
 

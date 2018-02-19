@@ -13,11 +13,8 @@ window.CKEDITOR.plugins.add("imgbrowser", {
           );
         };
 
-        window.open(
-          "http://localhost:3000/browse",
-          "Image Browser",
-          "width=900,height=600"
-        );
+        let url = editor.config.baseUrl + "/browse";
+        window.open(url, "Image Browser", "width=900,height=600");
       }
     });
   }

@@ -9,7 +9,7 @@ class CKEditor extends Component {
   }
 
   render() {
-    return (    
+    return (
         <textarea name={this.elementName} defaultValue={this.props.value} />
     );
   }
@@ -18,7 +18,7 @@ class CKEditor extends Component {
     let configuration = {
       toolbar: "Basic",
       height: 500,
-      nodeUrl: this.props.nodeUrl,
+      baseUrl: this.props.baseUrl,
       extraPlugins: "imgbrowser,iframe",
       extraAllowedContent:
         "img(img-thumbnail);object[id,name,width,height,data,type]; param[name,value];iframe[src,width,height];table(table,table-striped)"
@@ -36,7 +36,7 @@ class CKEditor extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    nodeUrl: state.nodeUrl,
+    baseUrl: state.appUrl,
   };
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+//require("react-datetime");
 
 export const Input = ({ id, name, type, className, ...props }) => {
   className = className === undefined ? "form-control" : className;
@@ -15,7 +16,15 @@ export const Input = ({ id, name, type, className, ...props }) => {
   );
 };
 
-export const Select = ({ id, name, type, className, emptyOption, options, ...props }) => {
+export const Select = ({
+  id,
+  name,
+  type,
+  className,
+  emptyOption,
+  options,
+  ...props
+}) => {
   className = className === undefined ? "form-control" : className;
 
   return (

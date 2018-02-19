@@ -1,15 +1,32 @@
 import React, { Component } from "react";
 import validateFormField from "./validateFormField";
-import { Input, Select, Textarea, RadioList, CheckboxList, Checkbox } from "./FormFields";
+import {
+  Input,
+  Select,
+  Textarea,
+  RadioList,
+  CheckboxList,
+  Checkbox
+} from "./FormFields";
 import RelationField from "./RelationField";
 import PivotField from "./PivotField";
+import "input-moment/dist/input-moment.css";
+import MomentInput from 'react-moment-input';
 import CKEditor from "./CKEditor";
+import moment from "moment";
 
 class Field extends Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.onBlur = this.onBlur.bind(this);
+    this.handleMomentInput = this.handleMomentInput.bind(this);
+  }
+
+  handleMomentInput(value) {
+    console.log(value);
+    const val = value.format("YYYY-MM-DD h:mm:ss");
+    this.props.setValue(this.props.name, val);
   }
 
   onBlur(e) {
@@ -61,6 +78,16 @@ class Field extends Component {
       case "textarea":
         FormInput = <Textarea onBlur={this.onBlur} {...props} />;
         break;
+      case "datetime":
+        FormInput = (
+          <MomentInput
+
+            defaultValue={moment(this.props.model[this.props.name])}
+            onBlur={this.onBlur}
+            onChange={this.handleMomentInput}
+          />
+        );
+        break;
       case "ckeditor":
         FormInput = (
           <CKEditor onBlur={this.onBlur} setValue={setValue} {...props} />
@@ -70,7 +97,7 @@ class Field extends Component {
         FormInput = <Input onBlur={this.onBlur} {...props} />;
     }
 
-    if(!label) {
+    if (!label) {
       return FormInput;
     }
 

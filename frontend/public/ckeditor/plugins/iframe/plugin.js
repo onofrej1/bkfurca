@@ -11,7 +11,7 @@ window.CKEDITOR.plugins.add("iframe", {
           { name: "width", type: "text" }
         ];
         window.callback = function(src, data) {
-          let url = editor.config.nodeUrl+'/'+src;
+          let url = editor.config.baseUrl+'/'+src;
           let width = data.width || "100%";
           let height = data.height || "800px";
 
@@ -27,7 +27,7 @@ window.CKEDITOR.plugins.add("iframe", {
         };
 
         window.open(
-          "http://localhost:3000/browse",
+          editor.config.baseUrl+"/browse",
           "Image Browser",
           "width=900,height=600"
         );

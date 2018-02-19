@@ -25,38 +25,38 @@ class Crud extends Component {
     data: []
   };
 
-  fieldsMap = {
+  dbFieldToForm = {
     string: "text",
     integer: "number"
   };
 
-  getListFields = () => {
+  getList = () => {
     let fields = [];
     let dbColumns = this.props.fields;
-    let modelList = models[this.props.name].list || {};
+    let list = models[this.props.name].list || {};
 
     for (let key in dbColumns) {
-      if(key === 'id' || modelList[key] === 'hidden') {
+      if(key === 'id' || list[key] === 'hidden') {
         continue;
       }
-      const column = { header: key, field: key, ...modelList[key] };
-      fields.push(column);
+      const field = { header: key, field: key, ...list[key] };
+      fields.push(field);
     }
     fields.push(actionButtons);
 
     return fields;
   };
 
-  getFormFields = () => {
+  getForm = () => {
     let dbColumns = this.props.fields;
-    let modelForm = models[this.props.name].form || {};
+    let form = models[this.props.name].form || {};
 
-    let fields = {...modelForm};
+    let fields = {...form};
 
     for (let key in dbColumns) {
-      const type = key === "id" ? "hidden" : this.fieldsMap[dbColumns[key].type];
-      fields[key] = { type, ...modelForm[key] };
-      if(modelForm[key] === 'hidden') delete fields[key];
+      const type = key === "id" ? "hidden" : this.dbFieldToForm[dbColumns[key].type];
+      fields[key] = { type, ...form[key] };
+      if(form[key] === 'hidden') delete fields[key];
     }
 
     return fields;
@@ -72,9 +72,8 @@ class Crud extends Component {
   }
 
   render() {
-    const fields = this.getFormFields();
-    const columns = this.getListFields();
-
+    const form = this.getForm();
+    const list = this.getList();
 
     return (
       <Row>
@@ -106,9 +105,9 @@ class Crud extends Component {
                     callback={this.afterSave}
                     addButtons
                   >
-                    {Object.keys(fields).map(key => {
-                      const field = fields[key];
-                      //console.log(field);
+                    {Object.keys(form).map(key => {
+                      const field = form[key];
+
                       if (field instanceof Object) {
                         return <Field key={key} name={key} label={key} {...field} />;
                       }
@@ -124,7 +123,7 @@ class Crud extends Component {
               </Modal>
 
               <DataTable
-                columns={columns}
+                columns={list}
                 data={this.props.data}
                 edit={this.props.setActiveRow}
                 remove={this.props.deleteResourceRow}

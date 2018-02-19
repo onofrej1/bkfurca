@@ -9,7 +9,7 @@ class DataTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageSize: 20,
+      pageSize: 10,
       page: 1,
       sortBy: this.props.sortBy || "id",
       sortDir: "asc",

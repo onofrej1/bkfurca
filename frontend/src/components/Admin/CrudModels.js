@@ -22,7 +22,9 @@ const Article = {
     content: {
       type: 'ckeditor'
     },
-    created_at: 'hidden',
+    created_at: {
+      type: 'datetime'
+    },
     tags: {
       type: 'pivotRelation',
       resourceTable: 'tag',
@@ -90,8 +92,21 @@ const Page = {
   }
 };
 
+const Hamburg = {
+  title: 'Hamburg',
+  form: {
+    event_date: {
+      type: 'datetime'
+    },
+    notes: {
+      type:'textarea',
+      rows: 7
+    }
+  }
+};
+
 const Tag = { title: 'Tags'};
 
-const models = { User, Page, Tag, Article, MenuItem };
+const models = { User, Page, Tag, Article, MenuItem, Hamburg };
 
 export default models;

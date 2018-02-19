@@ -15,6 +15,7 @@ class Form extends Component {
   }
 
   handleChange(event) {
+    console.log(event);
     this.setFormState(event.target);
   }
 
@@ -22,6 +23,8 @@ class Form extends Component {
     let form = Object.assign({}, this.state.form);
     form[name] = value;
     this.setState({ form });
+
+    console.log(this.state.form);
   }
 
   handleSubmit(event) {
@@ -52,7 +55,7 @@ class Form extends Component {
         ? [...values, element.value]
         : values.filter(v => v !== element.value);
     }
-    console.log(this.state.form);
+
     this.setValue(element.name, value);
   };
 

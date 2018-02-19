@@ -28,9 +28,6 @@ class RelationField extends Component {
       ...props
     } = this.props;
 
-    if (props.value) {
-    }
-
     return (
         <select
           id={id}
